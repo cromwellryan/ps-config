@@ -1,5 +1,5 @@
 # Load posh-git example profile
-. ~/Documents/WindowsPowerShell/posh-git/profile.example.ps1
+. C:\tools\poshgit\dahlbyk-posh-git-60e1ed7\profile.example.ps1
 . ~/Documents/WindowsPowerShell/ssh-agent-utils.ps1
 
 $env:path += ";C:\program files (x86)\Microsoft Visual Studio 10.0\Common7\IDE"
