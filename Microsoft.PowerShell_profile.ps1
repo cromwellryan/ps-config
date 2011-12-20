@@ -20,4 +20,16 @@ function curl($url) {
 	return (new-object net.webclient).DownloadString($url)
 }
 
+function curlex($url, $filename) {
+	$path = [io.path]::gettemppath() + "\" + $filename
+
+	if( test-path $path ) { rm -force $path }
+
+	(new-object net.webclient).DownloadFile($url, $path)
+
+	return new-object io.fileinfo $path
+}
+
 function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(';')} }
+
+
