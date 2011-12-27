@@ -8,7 +8,6 @@ function GoToProjects() { cd ~/projects }
 function TfsStatus() { tf status . /r }
 function TfsUpdate() { tf get . /r }
 
-
 set-alias gop GoToProjects
 set-alias ts TfsStatus
 set-alias tu TfsUpdate
@@ -28,6 +27,11 @@ function curlex($url, $filename) {
 	(new-object net.webclient).DownloadFile($url, $path)
 
 	return new-object io.fileinfo $path
+}
+
+function mkcd( $name ) {
+	$dirinfo = mkdir $name
+	cd $name 
 }
 
 function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(';')} }
