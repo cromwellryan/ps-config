@@ -1,10 +1,13 @@
 function isinmiddlesomewhere($rui) {
-	(($rui.WindowPosition.X -ne 0) -or ($rui.WindowPosition.Y -ne 0))
+	$x = $rui.WindowPosition.X
+	$y = $rui.WindowPosition.Y - $rui.WindowSize.Width
+
+	# Y is all kinds of f'ed up
+
+	($x -ne 0)
 }
 function fullscreen() {
 	$rui = (get-host).UI.RawUI
-
-	$is = 
 
 	if ((isinmiddlesomewhere $rui)) { 
 		"Maximize the window first.  (Win+UpArrow)" | out-host
