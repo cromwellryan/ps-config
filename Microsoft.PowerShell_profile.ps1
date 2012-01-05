@@ -1,13 +1,16 @@
 # Load posh-git example profile
 . C:\tools\poshgit\dahlbyk-posh-git-60e1ed7\profile.example.ps1
 . ~/Documents/WindowsPowerShell/ssh-agent-utils.ps1
+. ~/Documents/WindowsPowerShell/screen.ps1
 
 $env:path += ";C:\program files (x86)\Microsoft Visual Studio 10.0\Common7\IDE"
 
 function GoToProjects() { cd ~/projects }
 function TfsStatus() { tf status . /r }
 function TfsUpdate() { tf get . /r }
+function New-PSWindow { Invoke-item "$pshome\powershell.exe" }
 
+set-alias nw new-pswindow
 set-alias gop GoToProjects
 set-alias ts TfsStatus
 set-alias tu TfsUpdate
