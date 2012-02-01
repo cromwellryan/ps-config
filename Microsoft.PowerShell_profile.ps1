@@ -39,4 +39,8 @@ function mkcd( $name ) {
 
 function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(';')} }
 
+set-content Function:\mklink "cmd /c mklink `$args"
 
+
+$host.UI.RawUI.ForegroundColor="White"
+$host.UI.RawUI.BackgroundColor="Black"
