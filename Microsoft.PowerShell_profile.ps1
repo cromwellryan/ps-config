@@ -1,7 +1,7 @@
 # Load posh-git example profile
-. C:\tools\poshgit\dahlbyk-posh-git-60e1ed7\profile.example.ps1
-. ~/Documents/WindowsPowerShell/ssh-agent-utils.ps1
 . ~/Documents/WindowsPowerShell/screen.ps1
+
+Import-Module Psget
 
 $env:path += ";C:\program files (x86)\Microsoft Visual Studio 10.0\Common7\IDE"
 
@@ -41,6 +41,6 @@ function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(
 
 set-content Function:\mklink "cmd /c mklink `$args"
 
+# Load posh-git example profile
+. '~\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
 
-$host.UI.RawUI.ForegroundColor="White"
-$host.UI.RawUI.BackgroundColor="Black"
