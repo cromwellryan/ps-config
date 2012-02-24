@@ -1,9 +1,5 @@
-# Load posh-git example profile
-. ~/Documents/WindowsPowerShell/screen.ps1
 
 Import-Module Psget
-
-$env:path += ";C:\program files (x86)\Microsoft Visual Studio 10.0\Common7\IDE"
 
 function GoToProjects() { cd ~/projects }
 function TfsStatus() { tf status . /r }
@@ -42,5 +38,8 @@ function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(
 set-content Function:\mklink "cmd /c mklink `$args"
 
 # Load posh-git example profile
-. '~\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
+. ~/Documents/WindowsPowerShell/Modules/posh-git/profile.example.ps1
+. ~/Documents/WindowsPowerShell/screen.ps1
 
+# Visual Studio VsVars include (run vsvars32)
+. ~/Documents/WindowsPowerShell/vsvars.ps1
