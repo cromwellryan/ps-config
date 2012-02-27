@@ -1,5 +1,3 @@
-cmd /c mklink . %HOMEPATH%\Documents\WindowsPowerShell
-
 function installsilently($url, $name) {
 	vsixinstaller /q (curlex $url $name).FullName
 }
