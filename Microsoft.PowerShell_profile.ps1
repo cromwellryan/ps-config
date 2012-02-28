@@ -37,9 +37,13 @@ function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(
 
 set-content Function:\mklink "cmd /c mklink `$args"
 
+$scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
+
 # Load posh-git example profile
-. ~/Documents/WindowsPowerShell/Modules/posh-git/profile.example.ps1
-. ~/Documents/WindowsPowerShell/screen.ps1
+. ($scriptroot + "/Modules/posh-git/profile.example.ps1")
+. ($scriptroot + "/screen.ps1")
 
 # Visual Studio VsVars include (run vsvars32)
-. ~/Documents/WindowsPowerShell/vsvars.ps1
+. ($scriptroot + "/vsvars.ps1")
+
+. ($scriptRoot + "/MountISO.ps1")
