@@ -1,3 +1,4 @@
+$scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
 
 Import-Module Psget
 
@@ -37,13 +38,12 @@ function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(
 
 set-content Function:\mklink "cmd /c mklink `$args"
 
-$scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
-
 # Load posh-git example profile
-. ($scriptroot + "/Modules/posh-git/profile.example.ps1")
-. ($scriptroot + "/screen.ps1")
+. (join-path $scriptRoot "/Modules/posh-git/profile.example.ps1")
+. (join-path $scriptRoot "/screen.ps1")
 
-# Visual Studio VsVars include (run vsvars32)
-. ($scriptroot + "/vsvars.ps1")
+# Visual Studio VsVars include (run vsvars32
+. (join-path $scriptRoot "/vsvars.ps1")
 
-. ($scriptRoot + "/MountISO.ps1")
+. (join-path $scriptRoot "/MountISO.ps1")
+. (join-path $scriptRoot "/psgist/gist.ps1")
