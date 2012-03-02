@@ -1,6 +1,7 @@
 $scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
 
 Import-Module Psget
+Import-Module PsGist
 
 function GoToProjects() { cd ~/projects }
 function TfsStatus() { tf status . /r }
