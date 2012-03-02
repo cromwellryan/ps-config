@@ -46,4 +46,3 @@ set-content Function:\mklink "cmd /c mklink `$args"
 . (join-path $scriptRoot "/vsvars.ps1")
 
 . (join-path $scriptRoot "/MountISO.ps1")
-. (join-path $scriptRoot "/psgist/gist.ps1")
