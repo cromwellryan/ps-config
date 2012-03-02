@@ -1,0 +1,3 @@
+[submodule "modules/psgist"]
+	path = modules/psgist
+	url = git@github.com:cromwellryan/psgist.git
