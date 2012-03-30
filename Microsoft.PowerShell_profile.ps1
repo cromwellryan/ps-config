@@ -39,6 +39,9 @@ function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(
 
 set-content Function:\mklink "cmd /c mklink `$args"
 
+# Allow local unsigned scripts, but remote scripts must be signed
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+
 # Load posh-git example profile
 . (join-path $scriptRoot "/Modules/posh-git/profile.example.ps1")
 . (join-path $scriptRoot "/screen.ps1")
