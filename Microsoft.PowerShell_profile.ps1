@@ -35,6 +35,10 @@ function mkcd( $name ) {
 	cd $name 
 }
 
+function start-host() {
+	start 'iisexpress' @('/path:' + (pwd).Path)
+}
+
 function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(';')} }
 
 set-content Function:\mklink "cmd /c mklink `$args"
