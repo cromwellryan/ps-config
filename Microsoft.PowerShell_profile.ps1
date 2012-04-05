@@ -54,3 +54,4 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 . (join-path $scriptRoot "/vsvars.ps1")
 
 . (join-path $scriptRoot "/MountISO.ps1")
+. (join-path $scriptRoot "/git.ps1")
