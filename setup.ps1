@@ -13,3 +13,4 @@ installsilently http://visualstudiogallery.msdn.microsoft.com/6ed4c78f-a23e-49ad
 installsilently http://visualstudiogallery.msdn.microsoft.com/fa85b17d-3df2-49b1-bee6-71527ffef441/file/49766/1/PerfWatsonExtension-Signed.vsix PerfWatson.vsix
 installsilently http://visualstudiogallery.msdn.microsoft.com/961e6734-cd3a-4afb-a121-4541742b912e/file/36823/21/JSLint.VS2010.vsix JSLint.vsix
 installsilently http://visualstudiogallery.msdn.microsoft.com/35daa606-4917-43c4-98ab-38632d9dbd45/file/48456/6/Inmeta.VisualStudio.TeamExplorer.BuildFolders.Extension.vsix Inmeta.BuildFolders.vsix
+installsilently http://visualstudiogallery.msdn.microsoft.com/bce6cbf1-fb55-4a7d-b39b-8589634d846f/file/72361/3/VersionInfo.vsix VersionInfo.vsix
