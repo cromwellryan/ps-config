@@ -2,5 +2,5 @@
 	path = Modules/psgist
 	url = git@github.com:cromwellryan/psgist.git
 [submodule ".\\Modules\\posh-git"]
-	path = .\\Modules\\posh-git
+	path = Modules/posh-git
 	url = git://github.com/dahlbyk/posh-git.git
