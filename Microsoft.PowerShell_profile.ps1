@@ -3,6 +3,7 @@ $scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
 Import-Module Psget
 Import-Module PsGist
 
+# TFS Helpers
 function GoToProjects() { cd ~/projects }
 function TfsStatus() { tf status . /r }
 function TfsUpdate() { tf get . /r }
@@ -13,12 +14,8 @@ set-alias gop GoToProjects
 set-alias ts TfsStatus
 set-alias tu TfsUpdate
 
-function cpgitignore() { cp ~/BucketOStuff/.gitignore ./ }
-set-alias cpg cpgitignore
-
-function curl($url) {
-	return (new-object net.webclient).DownloadString($url)
-}
+# Git helpers
+set-content Function:ga "git add `$args"
 
 function curlex($url, $filename) {
 	$path = [io.path]::gettemppath() + "\" + $filename
@@ -30,10 +27,11 @@ function curlex($url, $filename) {
 	return new-object io.fileinfo $path
 }
 
-function mkcd( $name ) {
+function CreateDirectoryAndGo( $name ) {
 	$dirinfo = mkdir $name
 	cd $name 
 }
+set-alias mkcd CreateDirectoryAndGo
 
 function start-host() {
 	start 'iisexpress' @('/path:' + (pwd).Path)
@@ -42,6 +40,7 @@ function start-host() {
 function get-path() { ls ENV: | where {$_.Name -eq "PATH"} | % { $_.Value.Split(';')} }
 
 set-content Function:\mklink "cmd /c mklink `$args"
+set-content Function:\v "vim `$args"
 
 # Allow local unsigned scripts, but remote scripts must be signed
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
