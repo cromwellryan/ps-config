@@ -15,7 +15,10 @@ set-alias ts TfsStatus
 set-alias tu TfsUpdate
 
 # Git helpers
-set-content Function:ga "git add `$args"
+set-content Function:\ga "git add `$args"
+
+set-content Function:\pd "pushd ."
+
 
 function curlex($url, $filename) {
 	$path = [io.path]::gettemppath() + "\" + $filename
