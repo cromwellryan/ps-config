@@ -41,7 +41,6 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 ##############################
 . (join-path $scriptRoot "/git.ps1")
 set-content Function:\ga "git add `$args"
-set-content Function:\gcm "git cm `$args"
 
 # Load posh-git example profile
 . (join-path $scriptRoot "/Modules/posh-git/profile.example.ps1")
