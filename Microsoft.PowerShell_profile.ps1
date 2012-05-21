@@ -19,6 +19,7 @@ set-content Function:\ga "git add `$args"
 
 set-content Function:\pd "pushd ."
 
+$env:Path += ";" + $env:USERPROFILE + "\AppData\Roaming\npm\node_modules\"
 
 function curlex($url, $filename) {
 	$path = [io.path]::gettemppath() + "\" + $filename
