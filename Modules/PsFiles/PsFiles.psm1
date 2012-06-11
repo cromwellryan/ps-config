@@ -33,12 +33,38 @@ CodePage          : 1201
 #>
 
   param(
-    [Parameter(Position=0, ValueFromPipeline=$true)]
-    [PSObject]$InputObject = $null,
-    [string]$FilePath = $null
+    [Parameter(ValueFromPipeline=$true)]
+    [PSObject]
+    $InputObject = $null,
+
+    [String]
+    $FilePath = $null
   )
+  BEGIN {
+  
+## The hashtable used to store our mapping of encoding bytes to their
+## name. For example, "255-254 = Unicode"
+    $encodings = @{}
+
+## Find all of the encodings understood by the .NET Framework. For each,
+## determine the bytes at the start of the file (the preamble) that the .NET
+## Framework uses to identify that encoding.
+    $encodingMembers = [System.Text.Encoding] | Get-Member -Static -MemberType Property
+
+    $encodingMembers | Foreach-Object {
+      $encodingBytes = [System.Text.Encoding]::($_.Name).GetPreamble() -join '-'
+      $encodings[$encodingBytes] = $_.Name
+    }
+
+## Find out the lengths of all of the preambles.
+    $encodingLengths = $encodings.Keys | Where-Object { $_ } | % { ($_ -split "-").Count }
+
+## Assume the encoding is UTF7 by default
+    $result = "UTF7"
+
+  }
   PROCESS {
-# We need to determine if this thing is coming from a pipeline (ie ls | Get-FileEncoding) or invoked with -FilePath
+## We need to determine if this thing is coming from a pipeline (ie ls | Get-FileEncoding) or invoked with -FilePath
 		if( $InputObject -ne $null ) {
 			if( $InputObject.GetType() -eq [System.IO.FileInfo] ) {
 				$fileinfo = [System.IO.FileInfo]$InputObject
@@ -47,9 +73,9 @@ CodePage          : 1201
 				return 
 			}
 		}
-		elseif( $FilePath -ne $null -and (Test-Path $FilePath) ){
-			$fileinfo = Get-Item $FilePath
-		}
+    elseif( $FilePath -ne $null -and (Test-Path $FilePath)) {
+      $fileinfo = get-item $FilePath
+    }
 		else {
 			return
 		}
@@ -57,50 +83,32 @@ CodePage          : 1201
     $path = $fileinfo.FullName
 
     Set-StrictMode -Version Latest
-
-## The hashtable used to store our mapping of encoding bytes to their
-## name. For example, "255-254 = Unicode"
-    $encodings = @{}
-
-## Find all of the encodings understood by the .NET Framework. For each,
-## determine the bytes at the start of the file (the preamble) that the .NET
-## Framework uses to identify that encoding.
-    $encodingMembers = [System.Text.Encoding] |
-        Get-Member -Static -MemberType Property
-
-        $encodingMembers | Foreach-Object {
-              $encodingBytes = [System.Text.Encoding]::($_.Name).GetPreamble() -join '-'
-                  $encodings[$encodingBytes] = $_.Name
-        }
-
-## Find out the lengths of all of the preambles.
-    $encodingLengths = $encodings.Keys | Where-Object { $_ } |
-        Foreach-Object { ($_ -split "-").Count }
-
-## Assume the encoding is UTF7 by default
-    $result = "UTF7"
-
+    
 ## Go through each of the possible preamble lengths, read that many
 ## bytes from the file, and then see if it matches one of the encodings
 ## we know about.
     foreach($encodingLength in $encodingLengths | Sort -Descending)
     {
-          $bytes = (Get-Content -encoding byte -readcount $encodingLength $path)[0]
-              $encoding = $encodings[$bytes -join '-']
+      $bytes = (Get-Content -encoding byte -readcount $encodingLength $path)[0]
+      $encoding = $encodings[$bytes -join '-']
 
-                  ## If we found an encoding that had the same preamble bytes,
-                      ## save that output and break.
-                          if($encoding)
-                                {
-                                          $result = $encoding
-                                                  break
-                                                      }
+## If we found an encoding that had the same preamble bytes,
+## save that output and break.
+      if($encoding) {
+        $result = $encoding
+        break
+      }
     }
 
-## Finally, output the encoding.
-    New-Object PSObject -Property @{
-      File = $fileinfo
-      Encoding = [System.Text.Encoding]::$result
+## Finally, add the encoding to the incoming object
+    if( $InputObject -ne $null ) {
+      $InputObject | Add-Member -Force -Passthru -type NoteProperty -name Encoding -value [System.Text.Encoding]::$result
+    }
+    else {
+      New-Object PSObject -Property @{
+        File = $fileinfo
+        Encoding = [System.Text.Encoding]::$result
+      }
     }
   }
 }
