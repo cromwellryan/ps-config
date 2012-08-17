@@ -57,7 +57,13 @@ set-content Function:\ga "git add `$args"
 $env:Path += ";" + $env:USERPROFILE + "\AppData\Roaming\npm\node_modules\"
 
 function start-host() {
-	start 'iisexpress' @('/path:' + (pwd).Path)
+  $iisexpress = "$env:ProgramFiles\IIS Express\iisexpress.exe"
+  if (!(test-path $iisexpress)) {
+    write-error "Unable to local IIS Express at $iisexpress"
+    return 
+  }
+
+	start $iisexpress @("/path:$((pwd).Path)")
 }
 
 . (join-path $scriptRoot "/MountISO.ps1")
