@@ -56,6 +56,10 @@ set-content Function:\ga "git add `$args"
 # Put globally installed npm packages in PATH
 $env:Path += ";" + $env:USERPROFILE + "\AppData\Roaming\npm\node_modules\"
 
+##############################
+# Servers 
+##############################
+
 function start-host() {
   $iisexpress = "$env:ProgramFiles\IIS Express\iisexpress.exe"
   if (!(test-path $iisexpress)) {
@@ -66,4 +70,9 @@ function start-host() {
 	start $iisexpress @("/path:$((pwd).Path)")
 }
 
+function servepy() {
+  start 'python' @('-m', 'http.server')
+}
+
 . (join-path $scriptRoot "/MountISO.ps1")
+. (join-path $scriptRoot "/account.ps1")
