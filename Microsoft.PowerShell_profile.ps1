@@ -1,6 +1,5 @@
 $scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
 
-Import-Module Psget
 Import-Module PsGist
 Import-Module PsFiles
 
