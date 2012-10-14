@@ -26,7 +26,7 @@ function CreateDirectoryAndGo( $name ) {
 	$dirinfo = mkdir $name
 	cd $name 
 }
-set-alias mkcd CreateDirectoryAndGo
+set-alias mcd CreateDirectoryAndGo
 
 function get-path() { $env:Path.Split(';') }
 
