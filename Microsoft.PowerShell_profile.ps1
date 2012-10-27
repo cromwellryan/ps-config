@@ -7,6 +7,7 @@ Import-Module PsFiles
 ##############################
 # Team Founation Server (TFS)
 ##############################
+$env:Path += ";" + "C:\git-tf\git-tf-1.0.1.20120827"
 function GoToProjects() { cd ~/projects }
 set-alias gop GoToProjects
 
