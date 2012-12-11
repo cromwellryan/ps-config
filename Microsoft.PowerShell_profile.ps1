@@ -38,6 +38,16 @@ set-content Function:\v "vim `$args"
 # Allow local unsigned scripts, but remote scripts must be signed
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 
+
+function curlex($url, $filename) {
+  $path = [io.path]::gettemppath() + "\" + $filename
+
+  if( test-path $path ) { rm -force $path }
+
+  (new-object net.webclient).DownloadFile($url, $path)
+
+  return new-object io.fileinfo $path
+}
 ##############################
 # Git
 ##############################
