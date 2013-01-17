@@ -52,7 +52,10 @@ function curlex($url, $filename) {
 # Git
 ##############################
 . (join-path $scriptRoot "/git.ps1")
-set-content Function:\ga "git add `$args"
+set-content Function:\ga "git add -p . `$args"
+set-content Function:\gf "git fetch `$args"
+set-content Function:\gh "git hist"
+set-content Function:\gb "git co -b `$args"
 
 # Load posh-git example profile
 . (join-path $scriptRoot "/Modules/posh-git/profile.example.ps1")
