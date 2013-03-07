@@ -3,6 +3,10 @@ $scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
 Import-Module PsGist
 Import-Module PsFiles
 
+##############################
+# Tools
+##############################
+$env:Path += ";$($env:userprofile)\DropBox\Tools\Vim"
 
 ##############################
 # Team Founation Server (TFS)
