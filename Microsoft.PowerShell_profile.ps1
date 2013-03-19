@@ -61,8 +61,8 @@ set-content Function:\gf "git fetch `$args"
 set-content Function:\gh "git hist"
 set-content Function:\gb "git co -b `$args"
 
-# Load posh-git example profile
-. (join-path $scriptRoot "/Modules/posh-git/profile.example.ps1")
+# Load posh-git profile
+. (join-path $scriptRoot "/posh-git-profile.ps1")
 . (join-path $scriptRoot "/screen.ps1")
 
 
