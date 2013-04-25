@@ -38,6 +38,7 @@ function get-path() { $env:Path.Split(';') }
 set-content Function:\pd "pushd ."
 set-content Function:\mklink "cmd /c mklink `$args"
 set-content Function:\v "vim `$args"
+set-content Function:\rmf "rm `$args -force -recurse"
 
 # Allow local unsigned scripts, but remote scripts must be signed
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
@@ -52,6 +53,10 @@ function curlex($url, $filename) {
 
   return new-object io.fileinfo $path
 }
+
+$a = (Get-Host).UI.RawUI
+$a.ForegroundColor = "White"
+
 ##############################
 # Git
 ##############################
