@@ -3,6 +3,8 @@ $scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
 Import-Module PsGist
 Import-Module PsFiles
 
+. (join-path $scriptRoot "/utils.ps1")
+
 ##############################
 # Tools
 ##############################
