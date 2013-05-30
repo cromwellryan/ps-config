@@ -21,7 +21,7 @@ set-alias gop GoToProjects
 
 set-content Function:\ts "tf status . /r"
 set-content Function:\tu "tf get . /r"
-set-content Function:\tc "tf checkin . `$args"
+set-content Function:\tc "tf checkin `$args"
 
 # Visual Studio VsVars include (run vsvars32
 . (join-path $scriptRoot "/vsvars.ps1")
