@@ -19,9 +19,12 @@ $env:Path += ";" + "C:\git-tf\git-tf-1.0.1.20120827"
 function GoToProjects() { cd ~/projects }
 set-alias gop GoToProjects
 
+set-content Function:\ta "tf add `$args"
 set-content Function:\ts "tf status . /r"
-set-content Function:\tu "tf get . /r"
+set-content Function:\tg "tf get . /r"
 set-content Function:\tc "tf checkin `$args"
+set-content Function:\tu "tf undo `$args"
+
 
 # Visual Studio VsVars include (run vsvars32
 . (join-path $scriptRoot "/vsvars.ps1")
