@@ -12,7 +12,9 @@ function installsilently($url) {
   "http://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329/file/6390/41/VsVim.vsix",
   "http://visualstudiogallery.msdn.microsoft.com/6ed4c78f-a23e-49ad-b5fd-369af0c2107f/file/50769/32/WebEssentials.vsix",
   "http://visualstudiogallery.msdn.microsoft.com/a83505c6-77b3-44a6-b53b-73d77cba84c8/file/74740/26/SquaredInfinity.VSCommands.VS11.vsix", 
-  "http://visualstudiogallery.msdn.microsoft.com/6ab922d0-21c0-4f06-ab5f-4ecd1fe7175d/file/66177/7/NUnitTestAdapter.vsix") | `
+  "http://visualstudiogallery.msdn.microsoft.com/6ab922d0-21c0-4f06-ab5f-4ecd1fe7175d/file/66177/7/NUnitTestAdapter.vsix",
+  "http://visualstudiogallery.msdn.microsoft.com/3a96a4dc-ba9c-4589-92c5-640e07332afd/file/88404/3/ProPowerTools.vsix"
+  ) | `
   % { 
     write-host "Installing $_"
     installsilently $_ 
