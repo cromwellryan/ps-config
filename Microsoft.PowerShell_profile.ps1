@@ -90,14 +90,14 @@ $env:Path += ";" + $env:USERPROFILE + "\AppData\Roaming\npm\node_modules\"
 # Servers 
 ##############################
 
-function start-host() {
+function start-host($port = 8080) {
   $iisexpress = "$env:ProgramFiles\IIS Express\iisexpress.exe"
   if (!(test-path $iisexpress)) {
     write-error "Unable to local IIS Express at $iisexpress"
     return 
   }
 
-	start $iisexpress @("/path:$((pwd).Path)")
+	& $iisexpress @("/path:$((pwd).Path)") /port:$port
 }
 
 function servepy() {
