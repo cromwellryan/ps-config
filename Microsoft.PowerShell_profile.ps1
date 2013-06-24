@@ -16,7 +16,13 @@ $env:Path += ";$($env:userprofile)\DropBox\Tools\console2"
 # Team Founation Server (TFS)
 ##############################
 $env:Path += ";" + "C:\git-tf\git-tf-1.0.1.20120827"
-function GoToProjects() { cd ~/projects }
+function GoToProjects() { 
+  $prefs = @("c:\projects", "~\projects")
+
+  $projectsdir = $prefs | ? { test-path $_ } | first
+
+  cd $projectsdir
+}
 set-alias gop GoToProjects
 
 set-content Function:\ta "tf add `$args"
