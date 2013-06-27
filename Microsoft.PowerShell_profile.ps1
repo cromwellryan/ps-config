@@ -93,6 +93,8 @@ set-content Function:\ga "git add -p . `$args"
 set-content Function:\gf "git fetch `$args"
 set-content Function:\gh "git hist"
 set-content Function:\gb "git co -b `$args"
+set-content Function:\gup "git push origin master `$args"
+
 
 # Load posh-git profile
 . (join-path $scriptRoot "/posh-git-profile.ps1")
