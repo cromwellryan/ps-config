@@ -54,9 +54,23 @@ set-content Function:\mklink "cmd /c mklink `$args"
 set-content Function:\v "vim `$args"
 set-content Function:\rmf "rm `$args -force -recurse"
 
+function record() {
+  $now = [DateTime]::Now.ToString("yyyyMMdd-HHmmss")
+  $path = join-path ~\transcripts "$now.log"
+  start-transcript -path $path -noclobber
+}
+
+function New-Wreak() {
+  $temp = [IO.Path]::GetTempfilename()
+  rm $temp
+
+  pushd .
+  mcd $temp
+}
+set-alias wreak new-wreak
+
 # Allow local unsigned scripts, but remote scripts must be signed
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-
 
 function curlex($url, $filename) {
   $path = [io.path]::gettemppath() + "\" + $filename
