@@ -41,6 +41,9 @@ set-content Function:\tu "tf undo `$args"
 function New-PSWindow { Invoke-item "$pshome\powershell.exe" }
 set-alias nw new-pswindow
 
+function Copy-Path { $pwd.path | clip }
+set-alias cpath Copy-Path
+
 function CreateDirectoryAndGo( $name ) {
 	$dirinfo = mkdir $name
 	cd $name 
