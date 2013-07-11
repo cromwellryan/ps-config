@@ -34,6 +34,7 @@ set-content Function:\tu "tf undo `$args"
 
 # Visual Studio VsVars include (run vsvars32
 . (join-path $scriptRoot "/vsvars.ps1")
+set-content Function:\withvs11 "vsvars32 11"
 
 ##############################
 # Powershell
