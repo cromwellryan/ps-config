@@ -98,6 +98,7 @@ set-content Function:\gf "git fetch `$args"
 set-content Function:\gh "git hist"
 set-content Function:\gb "git co -b `$args"
 set-content Function:\gup "git push origin master `$args"
+set-content Function:\gs "git status"
 
 
 # Load posh-git profile
