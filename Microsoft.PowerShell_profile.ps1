@@ -15,7 +15,10 @@ $env:Path += ";$($env:userprofile)\DropBox\Tools\console2"
 ##############################
 # Team Founation Server (TFS)
 ##############################
-$env:Path += ";" + "C:\git-tf\git-tf-1.0.1.20120827"
+if( test-path "C:\git-tf\git-tf-1.0.1.20120827" ) {
+  $env:Path += ";" + "C:\git-tf\git-tf-1.0.1.20120827"
+}
+
 function GoToProjects() { 
   $prefs = @("c:\projects", "~\projects")
 
