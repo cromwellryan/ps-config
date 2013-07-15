@@ -64,14 +64,14 @@ function record() {
   start-transcript -path $path -noclobber
 }
 
-function New-Wreak() {
+function New-Wreck() {
   $temp = [IO.Path]::GetTempfilename()
   rm $temp
 
   pushd .
   mcd $temp
 }
-set-alias wreak new-wreak
+set-alias wreck new-wreck
 
 # Allow local unsigned scripts, but remote scripts must be signed
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
